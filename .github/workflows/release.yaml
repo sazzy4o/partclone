@@ -1,0 +1,33 @@
+name: Release Workflow
+on: [create]
+
+env:
+  RUSTFLAGS: "-D warnings"
+
+jobs:
+  release:
+    if: github.event_name == 'create' && github.event.ref_type == 'tag'
+    name: Release
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install partclone
+        run: sudo apt-get install -y partclone
+      - name: Build deps
+        run: sudo apt-get build-dep partclone
+      - name: Install deps 
+        run: sudo apt-get install -y f2fs-tools hfsprogs exfatprogs gddrescue reiser4progs 
+      - name: Install configure
+        run: ./autogen.sh && ./configure --enable-all CFLAGS="-static" --prefix=$PWD/bin
+      - name: Build
+        run: make LDFLAGS="--static" && make install
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "bin/*"
+          tag: ${{ github.ref }}
+          name: ${{ github.ref }}
+          draft: true
