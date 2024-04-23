@@ -23,7 +23,7 @@ jobs:
       - name: Install deps 
         run: sudo apt-get install -y f2fs-tools hfsprogs exfatprogs gddrescue reiser4progs 
       - name: Install configure
-        run: ./autogen.sh && ./configure --enable-all CFLAGS="-static" --prefix=$PWD/bin
+        run: ./autogen && ./configure --enable-all CFLAGS="-static" --prefix=$PWD/bin
       - name: Build
         run: make LDFLAGS="--static" && make install
       - name: Create release
