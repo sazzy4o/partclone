@@ -8,12 +8,14 @@ jobs:
   release:
     if: github.event_name == 'create' && github.event.ref_type == 'tag'
     name: Release
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Fix apt
+        run: sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
       - name: Install partclone
         run: sudo apt-get update && sudo apt-get install -y partclone
       - name: Build deps
