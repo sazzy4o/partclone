@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install partclone
-        run: sudo apt-get install -y partclone
+        run: sudp apt-get update && sudo apt-get install -y partclone
       - name: Build deps
         run: sudo apt-get build-dep partclone
       - name: Install deps 
