@@ -21,7 +21,7 @@ jobs:
       - name: Build deps
         run: sudo apt-get build-dep partclone
       - name: Install deps 
-        run: sudo apt-get install -y f2fs-tools hfsprogs exfatprogs gddrescue reiser4progs 
+        run: sudo apt-get install -y f2fs-tools hfsprogs exfatprogs gddrescue reiser4progs libfuse-dev
       - name: Install configure
         run: ./autogen && ./configure --enable-all CFLAGS="-static" --prefix=$PWD/bin
       - name: Build
