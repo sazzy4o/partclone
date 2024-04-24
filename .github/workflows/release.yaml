@@ -21,7 +21,7 @@ jobs:
             sudo apt-get build-dep partclone
             sudo apt-get install f2fs-tools hfsprogs exfatprogs gddrescue reiser4progs
       - name: Install configure
-        run: ./autogen && ./configure --enable-ntfs --enable-fat --enable-exfat --enable-hfsp --enable-apfs --enable-btrfs --enable-minix --enable-f2fs --enable-reiser4 --enable-xfs CFLAGS="-static" --prefix=$PWD/out
+        run: ./autogen && ./configure --enable-all CFLAGS="-static" --prefix=$PWD/out
       - name: Build
         run: make LDFLAGS="--static" && make install
       - name: Create release

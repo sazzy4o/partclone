@@ -104,8 +104,8 @@ AS_MESSAGE([checking  for EXT2/3 Library and Header files ... ...])
 AC_CHECK_HEADERS([ext2fs/ext2fs.h], ,
   AC_MSG_ERROR([*** EXT2/3 header files (ext2fs/ext2fs.h) not found])
 )
-AC_CHECK_LIB([ext2fs], [ext2fs_initialize], true,
-    AC_MSG_ERROR([*** EXT2/3 library (libext2fs) not found]))
+# AC_CHECK_LIB([ext2fs], [ext2fs_initialize], true,
+#    AC_MSG_ERROR([*** EXT2/3 library (libext2fs) not found]))
 
 AC_MSG_CHECKING(version of libextfs)
 PKG_CHECK_MODULES([EXT2FS], [ext2fs], [extfs_version=`pkg-config --modversion ext2fs`], )
