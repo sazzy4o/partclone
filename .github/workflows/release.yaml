@@ -19,7 +19,7 @@ jobs:
             sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
             sudo apt-get update
             sudo apt-get build-dep partclone
-            sudo apt-get install f2fs-tools hfsprogs exfatprogs gddrescue reiser4progs libfuse-dev
+            sudo apt-get install f2fs-tools hfsprogs exfatprogs reiser4progs gddrescue reiser4progs libfuse-dev
       - name: Install configure
         run: ./autogen && ./configure --enable-all CFLAGS="-static" --prefix=$PWD/out
       - name: Build
